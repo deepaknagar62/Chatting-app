@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import './Css/register.css'
 import Header from '../Components/Header';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
 
   
   const [image, setImage] = useState(null);
 
-  
+  const navigate = useNavigate();
+
+    const openLoginPage =()=>{
+        navigate('/login');
+    }
 
 
   const handleImageChange = (e) => {
@@ -57,7 +62,9 @@ export default function Register() {
               </div>
               <button type="submit" className="btn-submit">Register</button>
           </form>
-      </div>
+           <div onClick={openLoginPage}> <p className='simple-txt'>
+            Go to Login page</p></div>
+       </div>
       </>
   );
 }

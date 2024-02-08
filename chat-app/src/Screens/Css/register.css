@@ -63,3 +63,10 @@ h2 {
 .btn-submit:hover {
   background-color: #08534b;
 }
+
+.simple-txt{
+  font-size: 14px;
+  margin-left: 85px;
+  color:blue;
+  font-family: fantasy;
+}

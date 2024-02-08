@@ -1,0 +1,182 @@
+.app {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    
+  }
+  
+  .chats {
+    width: 40%;
+    border-right: 1.5px solid #ccc;
+    background-color: #e0deb1;
+   
+  }
+  
+  .chats h2 {
+    margin-top: 0;
+  }
+  
+  .chats ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .chats li {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .chats li:hover {
+    background-color: #d9dbba;
+    height: 40px;
+  }
+  
+  .chat {
+    width: 70%;
+    height: 100%;
+    margin-top: 0px;
+  }
+  
+  .chat h2 {
+    margin-top: 0;
+  }
+  
+  .messages {
+    height: calc(100vh - 130px);
+    overflow-y: auto;
+    background-color: #e0deb1;
+    margin-bottom: 30px;
+  
+  
+  }
+  
+  .message {
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: fit-content;
+    max-width: 530px;
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 8px;
+    
+  }
+
+  .chat-heading1{
+    background-color: #128C7E;
+    height: 70px;
+    margin-top: 0px;
+    margin-left: -20px;
+
+  }
+
+  .chat-heading2{
+    background-color: #128C7E;
+    width: 100%;
+    height: 70px;
+    margin-top: -0px;
+    display: flex;
+
+  }
+
+  .chat-boxes{
+    background-color: #fdfae8;
+    margin-bottom: 17px;
+    height: 60px;
+    margin-left: -20px;
+    border-bottom: 1.5px solid #ccc;
+    align-items: flex-start;
+    padding-left: 20px;
+
+  }
+
+  .profile-image {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    margin-right: 15px; 
+  }
+ 
+  .chat-img{
+    margin-left: 10px;
+  }
+
+  .chat-names{
+    margin-top: 8px;
+    margin-left: 5px;
+    flex-grow: 1;
+    overflow: hidden;
+    font-size: 17px;
+    font-weight: 400;
+  }
+
+  .scpf{
+    margin-left: 20px;
+    margin-top: 8px;
+  }
+
+  .sc-txt{
+    margin-top: 15px;
+    margin-left: 0px;
+    flex-grow: 1;
+    overflow: hidden;
+    font-size: 17px;
+    font-weight: 400;
+  }
+
+  .chat-footer {
+    position: fixed;
+    z-index: 2;
+    box-sizing: border-box;
+    flex: none;
+    order: 3;
+    width: 100%;
+    height: 62px; 
+    bottom: 0;
+    width: 100%;
+    background-color: #fcf9da; 
+    border-top: 1px solid #ccc;
+    padding: 10px; 
+  }
+
+  .cf-d{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    
+    
+  }
+
+  .cf-input {
+    width: 70%; 
+    margin-left: 20px;
+  }
+  
+  .cf-input input {
+    width: 80%; 
+    height: 25px; 
+    margin-left: 10px; 
+    padding: 5px; 
+    font-size: 16px;
+  }
+
+  .cf-btn{
+    margin-left: -100px;
+   
+  }
+
+  .cf-btn img{
+    width: 30px;
+    height: 30px;
+   
+  }
+
+  .cf-icon img{
+    width: 30px;
+    height: 30px;
+    margin-left: 30px;
+    margin-top: 5px;
+  }
+
+  
+  
