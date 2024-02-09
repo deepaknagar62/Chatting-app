@@ -2,14 +2,16 @@
     display: flex;
     justify-content: space-between;
     height: 100vh;
+    width: 100vw;
     
   }
   
   .chats {
-    width: 40%;
+    width: 100%;
+    max-width: 300px; 
     border-right: 1.5px solid #ccc;
     background-color: #e0deb1;
-   
+    overflow-y: auto; 
   }
   
   .chats h2 {
@@ -32,9 +34,9 @@
   }
   
   .chat {
-    width: 70%;
-    height: 100%;
-    margin-top: 0px;
+    width: 100%;
+    flex-grow: 1;
+    background-color: #e0deb1;
   }
   
   .chat h2 {
@@ -42,42 +44,31 @@
   }
   
   .messages {
-    height: calc(100vh - 130px);
+    height: calc(100vh - 200px); 
     overflow-y: auto;
     background-color: #e0deb1;
     margin-bottom: 30px;
-  
-  
+    padding: 0 20px; 
   }
   
   .message {
-    background-color: #f4f4f4;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: fit-content;
-    max-width: 530px;
-    margin-left: 20px;
-    margin-top: 10px;
-    border-radius: 8px;
-    
-  }
-
-  .chat-heading1{
-    background-color: #128C7E;
-    height: 70px;
-    margin-top: 0px;
-    margin-left: -20px;
-
-  }
-
-  .chat-heading2{
-    background-color: #128C7E;
-    width: 100%;
-    height: 70px;
-    margin-top: -0px;
-    display: flex;
-
-  }
+  background-color: #f4f4f4;
+  padding: 10px;
+  margin-bottom: 10px;
+  max-width: 80%;
+  margin-left: 20px;
+  border-radius: 8px;
+  margin-top: 10px;
+  width: fit-content;
+ }
+ .chat-heading1,
+ .chat-heading2 {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 70px;
+   background-color: #128c7e;
+ }
 
   .chat-boxes{
     background-color: #fdfae8;
@@ -128,41 +119,42 @@
     position: fixed;
     z-index: 2;
     box-sizing: border-box;
-    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     order: 3;
     width: 100%;
     height: 62px; 
     bottom: 0;
-    width: 100%;
     background-color: #fcf9da; 
     border-top: 1px solid #ccc;
     padding: 10px; 
+    
   }
 
   .cf-d{
     width: 80%;
     display: flex;
-    align-items: center;
+    
     
     
   }
 
   .cf-input {
-    width: 70%; 
+    flex-grow: 1; 
     margin-left: 20px;
+    max-width: 400px;
+    min-width: none;
   }
   
   .cf-input input {
-    width: 80%; 
-    height: 25px; 
-    margin-left: 10px; 
-    padding: 5px; 
+    width: 90%;
+    height: 25px;
+    padding: 5px;
     font-size: 16px;
-  }
+    border-radius: 5px;
+    border-color: #ccc;
 
-  .cf-btn{
-    margin-left: -100px;
-   
   }
 
   .cf-btn img{
@@ -170,6 +162,11 @@
     height: 30px;
    
   }
+.cf-icon img {
+  width: 30px;
+  height: 30px;
+}
+
 
   .cf-icon img{
     width: 30px;
@@ -178,5 +175,51 @@
     margin-top: 5px;
   }
 
+  @media screen and (min-width: 768px) {
+    .app {
+      flex-direction: row;
+    }
+  
+    .chats {
+      width: 30%;
+      height: 100%;
+      border-right: 1.5px solid #ccc;
+    }
+  
+    .chat {
+      width: 70%;
+    }
+
+    
+  }
+
+  @media screen and (min-width: 480px) and (max-width: 767px) {
+    .chats {
+      width: 40%;
+    }
+  
+    .chat {
+      width: 60%;
+    }
+
+    .chat-footer{
+      width: 70%;
+    }
+  }
+  
+  
+  @media screen and (min-width:  767px) and (max-width: 992px) {
+    .chats {
+      width: 25%;
+    }
+  
+    .chat {
+      width: 75%;
+    }
+
+    .chat-footer{
+      width: 80%;
+    }
+  }
   
   

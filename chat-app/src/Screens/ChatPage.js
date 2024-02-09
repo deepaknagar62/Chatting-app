@@ -98,7 +98,7 @@ export default function ChatPage() {
                 onChange={handleMessageChange}
               /> </div>
               
-              <div className='cf-btn'> <img src={sendmsg} alt="send msg" onClick={handleSendMessage}  /></div>
+              <div className='cf-icon'> <img src={sendmsg} alt="send msg" onClick={handleSendMessage}  /></div>
               
               </div>
             </footer>
