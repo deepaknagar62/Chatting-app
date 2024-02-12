@@ -1,4 +1,5 @@
 import './App.css';
+import UserState from './Components/UserProvider';
 import ChatPage from './Screens/ChatPage';
 import Login from './Screens/Login';
 import Register from './Screens/Register';
@@ -6,7 +7,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <>
+    <> 
+    <UserState> 
+    
+    
     <Router>
     
     <Routes>
@@ -22,6 +26,10 @@ function App() {
     </Routes>
 
     </Router>
+    
+    
+    </UserState>
+
     </>
   );
 }

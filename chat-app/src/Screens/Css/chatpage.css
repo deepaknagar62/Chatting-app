@@ -49,6 +49,8 @@
     background-color: #e0deb1;
     margin-bottom: 30px;
     padding: 0 20px; 
+    display: flex;
+    flex-direction: column;
   }
   
   .message {
@@ -61,6 +63,18 @@
   margin-top: 10px;
   width: fit-content;
  }
+ 
+ .sent {
+  align-self: flex-end;
+  background-color: #dcf8c6; 
+}
+
+.received {
+  align-self: flex-start;
+  background-color: #f0f0f0; 
+}
+
+
  .chat-heading1,
  .chat-heading2 {
    display: flex;
