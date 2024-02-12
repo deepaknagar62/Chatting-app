@@ -8,14 +8,14 @@ const io = new Server(9000, {
 
 let users = [];
 const addUser = (userData, socketID) => {
-  !users.some(
-    (user) => user._id === userData._id && users.push(...userData, socketID)
-  );
+  !users.some((user) => user.userId === userData.userId) &&
+    users.push({ ...userData, socketID });
 };
 
-const getUser = (userID)=>{
-    return users.find(user => user._id === userID);
-}
+const getUser = (userID) => {
+  const user = users.find((user) => user.userId === userID);
+  return user;
+};
 
 io.on("connection", (socket) => {
   console.log("a user connected");
@@ -26,8 +26,8 @@ io.on("connection", (socket) => {
     addUser(userData, socket.id);
     io.emit("getUsers", users);
   });
-  socket.on("sendMessage",(data) => {
+  socket.on("sendMessage", (data) => {
     const user = getUser(data.recieverID);
-    io.to(user.socketID).emit("getMessage",data);
-  })
+    io.to(user.socketID).emit("getMessage", data);
+  });
 });
