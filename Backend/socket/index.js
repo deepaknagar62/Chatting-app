@@ -16,18 +16,26 @@ const getUser = (userID) => {
   const user = users.find((user) => user.userId === userID);
   return user;
 };
-
 io.on("connection", (socket) => {
   console.log("a user connected");
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
+
   socket.on("addUsers", (userData) => {
     addUser(userData, socket.id);
     io.emit("getUsers", users);
   });
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+    users = users.filter((user) => user.socketID !== socket.id);
+    io.emit("getUsers", users);
+  });
+
   socket.on("sendMessage", (data) => {
-    const user = getUser(data.recieverID);
-    io.to(user.socketID).emit("getMessage", data);
+    const recipient = getUser(data.recieverID);
+    if (recipient) {
+      io.to(recipient.socketID).emit("getMessage", data);
+    } else {
+      console.log("Recipient not found");
+    }
   });
 });

@@ -14,8 +14,14 @@ const UserState = (props) => {
   const [userData, setUserData] = useState({ userId: null, userName: null });
   const socket = useRef();
   useEffect(() => {
-    socket.current = io("ws://localhost:9000")
-  },[userData])
+    socket.current = io("ws://localhost:9000");
+
+    return () => {
+      if (socket.current) {
+        socket.current.disconnect();
+      }
+    };
+  }, []);
   return (
     <UserContext.Provider value={{ userData, setUserData,socket }}>
       {props.children}

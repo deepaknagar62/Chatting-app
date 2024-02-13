@@ -14,7 +14,7 @@ export default function ChatPage() {
   const [messageFlage, setMessageFlage] = useState(false);
   const [selectedChat, setSelectedChat] = useState(null);
   const [messageInput, setMessageInput] = useState("");
-  const [conversationID, setconversationID] = useState("");
+  const [conversation, setconversation] = useState({});
   const [recieverID, setrecieverID] = useState("");
   const [messages, setMessages] = useState([]);
   const [incomingMessage, setIncomingMessage] = useState();
@@ -37,16 +37,17 @@ export default function ChatPage() {
       }
     }
     fetchUsers();
-  }, []);
+  }, [userData.userId]);
 
   useEffect(() => {
     async function fetchMessages() {
-      if (!conversationID) return;
+      if (!conversation._id) return;
 
       try {
         const response = await axios.get(
-          `http://localhost:3001/message/get/${conversationID}`
+          `http://localhost:3001/message/get/${conversation?._id}`
         );
+
         setMessages(response.data);
       } catch (error) {
         console.error("Error fetching messages:", error);
@@ -54,25 +55,25 @@ export default function ChatPage() {
     }
 
     fetchMessages();
-  }, [conversationID, messageFlage]);
+  }, [conversation?._id, userData.userId, messageFlage]);
 
   useEffect(() => {
-    
     socket.current.emit("addUsers", userData);
 
     socket.current.on("getUsers", (users) => {});
-  }, [userData]);
+  }, [userData, socket]);
 
   useEffect(() => {
-    
     socket.current.on("getMessage", (data) => {
       setIncomingMessage({ ...data, createdAt: Date.now() });
     });
-  }, [messageFlage]);
+  }, [socket]);
 
   useEffect(() => {
-    incomingMessage && setMessages((prev) => [...prev, incomingMessage]);
-  }, [incomingMessage, messageFlage]);
+    incomingMessage &&
+      conversation?.members?.includes(incomingMessage.senderID) &&
+      setMessages((prev) => [...prev, incomingMessage]);
+  }, [incomingMessage, conversation]);
 
   const handleChatSelect = async (chat) => {
     setSelectedChat(chat);
@@ -98,7 +99,7 @@ export default function ChatPage() {
             }
           );
 
-          setconversationID(res.data._id);
+          setconversation(res.data);
         } catch (error) {
           console.log(error);
         }
@@ -113,29 +114,30 @@ export default function ChatPage() {
   };
 
   const handleSendMessage = async () => {
-   
-    socket.current.emit("sendMessage", {
-      conversationID: conversationID,
-      senderID: userData.userId,
-      recieverID: recieverID,
-      text: messageInput,
-      type: "text",
-    });
+    if (!conversation?._id) return;
 
+  
     try {
       await axios.post("http://localhost:3001/message/add", {
-        conversationID: conversationID,
+        conversationID: conversation?._id,
         senderID: userData.userId,
         recieverID: recieverID,
         text: messageInput,
         type: "text",
       });
-      setMessageFlage(!messageFlage);
+      socket.current.emit("sendMessage", {
+        conversationID: conversation?._id,
+        senderID: userData.userId,
+        recieverID: recieverID,
+        text: messageInput,
+        type: "text",
+      });
       setMessageInput("");
       setMessages([
         ...messages,
         { text: messageInput, senderID: userData.userId },
       ]);
+      setMessageFlage((prev) => !prev);
     } catch (error) {
       console.error("Error sending message:", error);
     }
