@@ -4,6 +4,7 @@ import pf from "./Images/deepak.jpg";
 import sendmsg from "./Images/sendmsg.png";
 import plus from "./Images/plusicon.jpg";
 import emoji from "./Images/emoji.png";
+import mic from "./Images/mic.png";
 import { useUser } from "../Components/UserProvider";
 import axios from "axios";
 
@@ -216,6 +217,9 @@ export default function ChatPage() {
                     value={messageInput}
                     onChange={handleMessageChange}
                   />
+                </div>
+                <div className="cf-icon" style={{marginLeft:'-40px'}}>
+                  <img src={mic} alt="mic" />
                 </div>
                 <div className="cf-icon">
                   <img
